@@ -1,15 +1,27 @@
 {
-  "name": "user-manager_api",
+  "name": "eletronic-point_api",
   "version": "1.0.0",
-  "description": "node.js api for management users",
+  "description": "api for managing employees in the point system electronic",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/felipealp/felipealp-eletronic-point_api.git"
+  },
+  "author": "Luiz Felipe Alves",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/felipealp/felipealp-eletronic-point_api/issues"
+  },
+  "homepage": "https://github.com/felipealp/felipealp-eletronic-point_api#readme",
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "sequelize": "^6.6.4"
+    "pg": "^8.6.0",
+    "sequelize": "^6.6.2"
   }
 }
