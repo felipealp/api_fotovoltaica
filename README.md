@@ -45,10 +45,10 @@ DB_DATABASE=banco_de_dados
 
 ```bash
 # Instale as dependências
-$ instalação de fio
+$ npm install
 
 # Executa o aplicativo em modo de desenvolvimento
-$ início do fio
+$ npm start
 
 # Pronto!
 # API rodando em http://localhost:3001
