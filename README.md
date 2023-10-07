@@ -27,7 +27,7 @@ $ git clone https://github.com/felipealp/eletronic-point_api
 $ cd ponto eletrônico_api
 
 # Acesse o editor de código (exemplo para vscode)
-código $.
+$ código.
 ```
 
 ### 2 - Crie um arquivo .env no projeto e configure o banco de dados postgre
