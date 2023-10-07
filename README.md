@@ -38,7 +38,7 @@ DB_CONNECTION=postgres
 DB_HOST=localhost
 DB_USER=usuário
 DB_PASSWORD=senha
-DB_DATABASE=ponto_eletrônico_banco de dados
+DB_DATABASE=banco_de_dados
 ```
 
 ### 3 - Instale as dependências e execute o projeto
