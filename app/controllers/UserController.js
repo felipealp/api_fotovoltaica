@@ -1,26 +1,26 @@
 const db = require("../models");
-const Employee = db.employees;
+const User = db.users;
 
-const validateEmployee = (req) => {
+const validateUser = (req) => {
   if (!req.body.name) {
-    return "O nome do Colaborador é obrigatório!";
+    return "O nome do Usuário é obrigatório!";
   } else if (!req.body.email) {
-    return "O email do Colaborador é obrigatório!";
+    return "O email do Usuário é obrigatório!";
   } else if (!req.body.cpf) {
-    return "O CPF do Colaborador é obrigatório!";
+    return "O CPF do Usuário é obrigatório!";
   } else if (!req.body.skills) {
-    return "As habilidades do Colaborador são obrigatórias!";
+    return "As habilidades do Usuário são obrigatórias!";
   }
 
   return false;
 }
 
 module.exports = {
-  // Create and Save a new Employee
+  // Create and Save a new User
   async create(req, res) {
 
     // Validation of required fields
-    const invalid = validateEmployee(req);
+    const invalid = validateUser(req);
 
     if (invalid) {
       res.status(400).send({
@@ -31,15 +31,15 @@ module.exports = {
     }
 
     // Validation of unique CPF
-    if (await Employee.findOne({ where: { cpf: req.body.cpf } })) {
+    if (await User.findOne({ where: { cpf: req.body.cpf } })) {
       res.status(400).send({
-        error: "Colaborador com o CPF informado já foi cadastrado!"
+        error: "Usuário com o CPF informado já foi cadastrado!"
       });
 
       return
     }
 
-    const employee = {
+    const user = {
       name: req.body.name,
       email: req.body.email,
       cpf: req.body.cpf,
@@ -47,22 +47,22 @@ module.exports = {
       skills: req.body.skills,
     };
 
-    Employee.create(employee)
+    User.create(user)
       .then(data => {
         res.send(data);
       })
       .catch(err => {
         res.status(500).send({
           message:
-            err.message || "Ocorreu algum erro ao cadastrar o Colaborador."
+            err.message || "Ocorreu algum erro ao cadastrar o Usuário."
         });
 
       });
   },
 
-  // Find all Employees from the database
+  // Find all Users from the database
   async findAll(req, res) {
-    Employee.findAll({
+    User.findAll({
       order: [
         ['name', 'ASC'],
       ]
@@ -73,7 +73,7 @@ module.exports = {
       .catch(err => {
         res.status(500).send({
           message:
-            err.message || "Oocorreu algum erro ao buscar os Colaboradores."
+            err.message || "Oocorreu algum erro ao buscar os Usuárioes."
         });
       });
   },
@@ -82,13 +82,13 @@ module.exports = {
   async findOneByName(req, res) {
     const name = req.params.name;
 
-    Employee.findOne({ where: { name } })
+    User.findOne({ where: { name } })
       .then(data => {
         res.send(data);
       })
       .catch(err => {
         res.status(500).send({
-          message: "Erro ao buscao Colaborador com nome=" + name
+          message: "Erro ao buscao Usuário com nome=" + name
         });
       });
   },
@@ -97,48 +97,48 @@ module.exports = {
   async findOne(req, res) {
     const id = req.params.id;
 
-    Employee.findOne(id)
+    User.findOne(id)
       .then(data => {
         res.send(data);
       })
       .catch(err => {
         res.status(500).send({
-          message: "Erro ao buscao Colaborador com id=" + id
+          message: "Erro ao buscao Usuário com id=" + id
         });
       });
   },
 
-  // Validate a Employee by the id in the request
+  // Validate a User by the id in the request
   async validate(req, res) {
     const id = req.params.id;
 
-    Employee.update({ valid: req.body.valid }, {
+    User.update({ valid: req.body.valid }, {
       where: { id: id }
     })
       .then(num => {
         if (num == 1) {
           res.send({
-            message: "Validação de Colaborador feita com sucesso."
+            message: "Validação de Usuário feita com sucesso."
           });
         } else {
           res.send({
-            message: `Não é possível fazer a validação do Colaborador com id=${id}. Talvez o Colaborador não tenha sido encontrado ou req.body está em branco!`
+            message: `Não é possível fazer a validação do Usuário com id=${id}. Talvez o Usuário não tenha sido encontrado ou req.body está em branco!`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "Erro ao fazer a validação do Colaborador com id=" + id
+          message: "Erro ao fazer a validação do Usuário com id=" + id
         });
       });
   },
 
-  // Update a Employee by the id in the request
+  // Update a User by the id in the request
   async update(req, res) {
     const id = req.params.id;
 
     // Validation of required fields
-    const invalid = validateEmployee(req);
+    const invalid = validateUser(req);
 
     if (invalid) {
       res.status(400).send({
@@ -148,48 +148,48 @@ module.exports = {
       return
     }
 
-    Employee.update(req.body, {
+    User.update(req.body, {
       where: { id: id }
     })
       .then(num => {
         if (num == 1) {
           res.send({
-            message: "Colaborador atualizado com sucesso."
+            message: "Usuário atualizado com sucesso."
           });
         } else {
           res.send({
-            message: `Não é possível atualizar o Colaborador com id=${id}. Talvez o Colaborador não tenha sido encontrado ou req.body está em branco!`
+            message: `Não é possível atualizar o Usuário com id=${id}. Talvez o Usuário não tenha sido encontrado ou req.body está em branco!`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "Erro ao atualizar Colaborador com id=" + id
+          message: "Erro ao atualizar Usuário com id=" + id
         });
       });
   },
 
-  // Delete a Employee with the specified id in the request
+  // Delete a User with the specified id in the request
   async delete(req, res) {
     const id = req.params.id;
 
-    Employee.destroy({
+    User.destroy({
       where: { id: id }
     })
       .then(num => {
         if (num == 1) {
           res.send({
-            message: "O Colaborador foi removido com sucesso."
+            message: "O Usuário foi removido com sucesso."
           });
         } else {
           res.send({
-            message: `Não é possível apagar o Colaborador com id=${id}. Talvez o Colaborador não tenha sido encontrado!`
+            message: `Não é possível apagar o Usuário com id=${id}. Talvez o Usuário não tenha sido encontrado!`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "Não foi possível excluir o Colaborador com id" + id
+          message: "Não foi possível excluir o Usuário com id" + id
         });
       });
   },

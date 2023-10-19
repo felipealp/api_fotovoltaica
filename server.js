@@ -17,7 +17,7 @@ db.sequelize.sync();
 
 // Home route
 app.get("/", (req, res) => {
-  res.json({ message: "welcome to eletronmic point api" });
+  res.json({ message: "welcome to fotovoltaica api" });
 });
 
 // App routes

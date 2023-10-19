@@ -1,21 +1,15 @@
 
-const EmployeeController = require("../app/controllers/EmployeeController");
+const UserController = require("../app/controllers/UserController");
 
 const routes = require("express").Router();
 
-// Create a new Employee
-routes.post("/employees", EmployeeController.create);
-// Retrieve all Employees
-routes.get("/employees", EmployeeController.findAll);
-// Retrieve a single Employee with name
-routes.get("/employees/:name", EmployeeController.findOneByName);
-// Retrieve a single Employee with id
-routes.get("/employee/:id", EmployeeController.findOne);
-// Retrieve a single Employee with id
-routes.put("/employees/:id/validate", EmployeeController.validate);
-// Update a Employee with id
-routes.put("/employees/:id", EmployeeController.update);
-// Delete a Employee with id
-routes.delete("/employees/:id", EmployeeController.delete);
+// User
+routes.post("/users", UserController.create);
+routes.get("/users", UserController.findAll);
+routes.get("/users/:name", UserController.findOneByName);
+routes.get("/user/:id", UserController.findOne);
+routes.put("/users/:id/validate", UserController.validate);
+routes.put("/users/:id", UserController.update);
+routes.delete("/users/:id", UserController.delete);
 
 module.exports = routes;
