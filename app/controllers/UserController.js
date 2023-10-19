@@ -6,10 +6,8 @@ const validateUser = (req) => {
     return "O nome do Usuário é obrigatório!";
   } else if (!req.body.email) {
     return "O email do Usuário é obrigatório!";
-  } else if (!req.body.cpf) {
-    return "O CPF do Usuário é obrigatório!";
-  } else if (!req.body.skills) {
-    return "As habilidades do Usuário são obrigatórias!";
+  } else if (!req.body.senha) {
+    return "A senha do Usuário é obrigatória!";
   }
 
   return false;
@@ -30,21 +28,12 @@ module.exports = {
       return
     }
 
-    // Validation of unique CPF
-    if (await User.findOne({ where: { cpf: req.body.cpf } })) {
-      res.status(400).send({
-        error: "Usuário com o CPF informado já foi cadastrado!"
-      });
-
-      return
-    }
-
     const user = {
       name: req.body.name,
       email: req.body.email,
-      cpf: req.body.cpf,
+      senha: req.body.senha,
       phone: req.body.phone,
-      skills: req.body.skills,
+      address: req.body.address,
     };
 
     User.create(user)

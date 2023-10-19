@@ -18,19 +18,17 @@ module.exports = (Sequelize, DataType) => {
       allowNull: false
     },
 
-    cpf: {
+    senha: {
       type: DataType.STRING,
-      allowNull: false,
-      unique: true
+      allowNull: false
     },
 
     phone: {
       type: DataType.STRING
     },
 
-    skills: {
-      type: DataType.JSON,
-      allowNull: false
+    address: {
+      type: DataType.STRING
     },
 
     valid: {
