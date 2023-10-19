@@ -17,27 +17,39 @@ Para Rodar essa aplicação é necessário:
 - [Git](https://git-scm.com)
 - [Node.js](https://nodejs.org/en/)
 - [PostgreSQL](https://www.postgresql.org/)
+### 1 - Clone este repositório e acesse o editor de código
 
 ```bash
-# Faça o clone do repositório
-$ git clone https://github.com/felipealp/api_fotovoltaica
+# Clonar repositório
+$ git clone https://github.com/felipealp/eletronic-point_api
 
-# Accesse o caminho do projeto
-$ cd api_fotovoltaica
+#Acesse o caminho do projeto
+$ cd ponto eletrônico_api
 
-# Instale as dependências
-$  npm install
+# Acesse o editor de código (exemplo para vscode)
+$ código.
+```
 
-# Crie o .env com as congirueações:
+### 2 - Crie um arquivo .env no projeto e configure o banco de dados postgre
+
+```
+# .env exemplo:
+DB_CONNECTION=postgres
 DB_HOST=localhost
-DB_USER=seu_usuario
-DB_PASSWORD=sua_senha
-DB_DATABASE=nome_do_banco
-DB_CONNECTION=mysql
+DB_USER=usuário
+DB_PASSWORD=senha
+DB_DATABASE=banco_de_dados
+```
 
-# Rode o projeto
-$  node index.js
+### 3 - Instale as dependências e execute o projeto
+
+```bash
+# Instale as dependências
+$ npm install
+
+# Executa o aplicativo em modo de desenvolvimento
+$ npm start
 
 # Pronto!
-# Acesse http://localhost:4502/aem/start.html
+# API rodando em http://localhost:3001
 ```
